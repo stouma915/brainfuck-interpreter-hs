@@ -1,3 +1,3 @@
-# Changelog for blackjhack
+# Changelog for brainfuck-interpreter-hs
 
 ## Unreleased changes

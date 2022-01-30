@@ -4,15 +4,15 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 
-name:           brainfuck-interpreter-hs
-version:        1.0.0
-description:    Please see the README on GitHub at <https://github.com/stouma915/brainfuck-interpreter-hs#readme>
-homepage:       https://github.com/stouma915/brainfuck-interpreter-hs#readme
-bug-reports:    https://github.com/stouma915/brainfuck-interpreter-hs/issues
-author:         stouma915
+name:           BrainfuckInterpreter
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/BrainfuckInterpreter#readme>
+homepage:       https://github.com/githubuser/BrainfuckInterpreter#readme
+bug-reports:    https://github.com/githubuser/BrainfuckInterpreter/issues
+author:         Author name here
 maintainer:     example@example.com
-copyright:      2022 Sasaki Touma
-license:        MIT
+copyright:      2022 Author name here
+license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
@@ -21,40 +21,40 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/stouma915/brainfuck-interpreter-hs
+  location: https://github.com/githubuser/BrainfuckInterpreter
 
 library
   exposed-modules:
       Lib
   other-modules:
-      Paths_brainfuck_interpreter_hs
+      Paths_BrainfuckInterpreter
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
   default-language: Haskell2010
 
-executable brainfuck-interpreter-hs-exe
+executable BrainfuckInterpreter-exe
   main-is: Main.hs
   other-modules:
-      Paths_brainfuck_interpreter_hs
+      Paths_BrainfuckInterpreter
   hs-source-dirs:
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
-    , brainfuck-interpreter-hs
+      BrainfuckInterpreter
+    , base >=4.7 && <5
   default-language: Haskell2010
 
-test-suite brainfuck-interpreter-hs-test
+test-suite BrainfuckInterpreter-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      Paths_brainfuck_interpreter_hs
+      Paths_BrainfuckInterpreter
   hs-source-dirs:
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
-    , brainfuck-interpreter-hs
+      BrainfuckInterpreter
+    , base >=4.7 && <5
   default-language: Haskell2010

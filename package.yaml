@@ -1,4 +1,4 @@
-name:                brainfuck-interpreter-hs
+name:                BrainfuckInterpreter
 version:             1.0.0
 github:              "stouma915/brainfuck-interpreter-hs"
 license:             MIT
@@ -26,7 +26,7 @@ library:
   source-dirs: src
 
 executables:
-  brainfuck-interpreter-hs-exe:
+  BrainfuckInterpreter-exe:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -34,10 +34,10 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - brainfuck-interpreter-hs
+    - BrainfuckInterpreter
 
 tests:
-  brainfuck-interpreter-hs-test:
+  BrainfuckInterpreter-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
@@ -45,4 +45,4 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - brainfuck-interpreter-hs
+    - BrainfuckInterpreter
