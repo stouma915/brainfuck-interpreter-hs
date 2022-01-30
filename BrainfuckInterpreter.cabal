@@ -25,7 +25,7 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      BrainfuckInterpreter.ASCIIConverter
   other-modules:
       Paths_BrainfuckInterpreter
   hs-source-dirs:
