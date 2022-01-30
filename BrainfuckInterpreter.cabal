@@ -25,7 +25,7 @@ source-repository head
 
 library
   exposed-modules:
-      BrainfuckInterpreter.ASCIIConverter
+      ASCIIConverter
   other-modules:
       Paths_BrainfuckInterpreter
   hs-source-dirs:
@@ -50,6 +50,7 @@ test-suite BrainfuckInterpreter-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      ASCIIConverterSpec
       Paths_BrainfuckInterpreter
   hs-source-dirs:
       test
@@ -57,4 +58,5 @@ test-suite BrainfuckInterpreter-test
   build-depends:
       BrainfuckInterpreter
     , base >=4.7 && <5
+    , hspec
   default-language: Haskell2010
