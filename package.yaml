@@ -4,7 +4,7 @@ github:              "stouma915/brainfuck-interpreter-hs"
 license:             MIT
 author:              "stouma915"
 maintainer:          "example@example.com"
-copyright:           "2022 stouma915"
+copyright:           "2022 Sasaki Touma"
 
 extra-source-files:
 - README.md

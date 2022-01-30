@@ -11,8 +11,9 @@ homepage:       https://github.com/stouma915/brainfuck-interpreter-hs#readme
 bug-reports:    https://github.com/stouma915/brainfuck-interpreter-hs/issues
 author:         stouma915
 maintainer:     example@example.com
-copyright:      2022 stouma915
+copyright:      2022 Sasaki Touma
 license:        MIT
+license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     README.md
