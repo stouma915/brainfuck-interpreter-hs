@@ -5,14 +5,14 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           BrainfuckInterpreter
-version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/BrainfuckInterpreter#readme>
-homepage:       https://github.com/githubuser/BrainfuckInterpreter#readme
-bug-reports:    https://github.com/githubuser/BrainfuckInterpreter/issues
-author:         Author name here
+version:        1.0.0
+description:    Please see the README on GitHub at <https://github.com/stouma915/brainfuck-interpreter-hs#readme>
+homepage:       https://github.com/stouma915/brainfuck-interpreter-hs#readme
+bug-reports:    https://github.com/stouma915/brainfuck-interpreter-hs/issues
+author:         stouma915
 maintainer:     example@example.com
-copyright:      2022 Author name here
-license:        BSD3
+copyright:      2022 Sasaki Touma
+license:        MIT
 license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
@@ -21,7 +21,7 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/BrainfuckInterpreter
+  location: https://github.com/stouma915/brainfuck-interpreter-hs
 
 library
   exposed-modules:
