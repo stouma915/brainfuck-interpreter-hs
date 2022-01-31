@@ -32,6 +32,7 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , mtl >=2.2.2
   default-language: Haskell2010
 
 executable BrainfuckInterpreter-exe
@@ -44,6 +45,7 @@ executable BrainfuckInterpreter-exe
   build-depends:
       BrainfuckInterpreter
     , base >=4.7 && <5
+    , mtl >=2.2.2
   default-language: Haskell2010
 
 test-suite BrainfuckInterpreter-test
@@ -59,4 +61,5 @@ test-suite BrainfuckInterpreter-test
       BrainfuckInterpreter
     , base >=4.7 && <5
     , hspec
+    , mtl >=2.2.2
   default-language: Haskell2010
