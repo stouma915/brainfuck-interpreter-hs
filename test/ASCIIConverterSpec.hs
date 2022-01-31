@@ -7,4 +7,4 @@ spec :: Spec
 spec = do
   describe "ASCIIConverter" $
     it "Convert Int to ASCII" $
-      convert 65 `shouldBe`'A'
+      convertIntToASCII 65 `shouldBe`'A'

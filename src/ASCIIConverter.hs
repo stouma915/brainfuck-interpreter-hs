@@ -1,4 +1,4 @@
-module ASCIIConverter( convert ) where
+module ASCIIConverter(convertIntToASCII) where
 
-convert :: Int -> Char
-convert i = toEnum i :: Char
+convertIntToASCII :: Int -> Char
+convertIntToASCII i = toEnum i :: Char
