@@ -30,6 +30,8 @@ main = do
 
         exitWith (ExitFailure 2)
       Right content -> do
-        putStrLn content
-
+        let replaced = map(\c -> if c == '\n' then ' '; else c) content
+        
+        putStrLn replaced
+        
         exitSuccess
