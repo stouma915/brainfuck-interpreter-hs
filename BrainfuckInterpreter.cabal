@@ -27,6 +27,7 @@ library
   exposed-modules:
       ASCIIConverter
       Interpreter
+      Util
   other-modules:
       Paths_BrainfuckInterpreter
   hs-source-dirs:
