@@ -141,17 +141,3 @@ eval sourceCode memoryPointer memoryEntries = do
   output <- readIORef outputRef
 
   return (output, (pointer, M.toList memory))
-
-lazyCompare :: (Eq a) => IORef a -> a -> IO Bool
-lazyCompare ref target = do
-  content <- readIORef ref
-  return (content == target)
-
-lazyCompareNot :: (Eq a) => IORef a -> a -> IO Bool
-lazyCompareNot ref target = do
-  c <- lazyCompare ref target
-
-  if c then
-    pure False
-  else
-    pure True

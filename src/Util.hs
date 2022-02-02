@@ -1,4 +1,4 @@
-module Util(searchLoopEnd, while) where
+module Util(searchLoopEnd, while, lazyCompare, lazyCompareNot) where
 
 import Control.Monad
 import Data.IORef
@@ -55,3 +55,17 @@ while condition content = do
     while condition content
   else
     pure ()
+
+lazyCompare :: (Eq a) => IORef a -> a -> IO Bool
+lazyCompare ref target = do
+  content <- readIORef ref
+  return (content == target)
+
+lazyCompareNot :: (Eq a) => IORef a -> a -> IO Bool
+lazyCompareNot ref target = do
+  c <- lazyCompare ref target
+
+  if c then
+    pure False
+  else
+    pure True
