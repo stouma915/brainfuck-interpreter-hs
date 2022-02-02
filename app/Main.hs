@@ -7,6 +7,8 @@ import System.IO ()
 import Control.Exception (try)
 import GHC.IO.Exception (ioe_description)
 
+import Interpreter (eval)
+
 main :: IO ()
 main = do
   args <- getArgs
@@ -32,6 +34,7 @@ main = do
       Right content -> do
         let replaced = map(\c -> if c == '\n' then ' '; else c) content
         
-        putStrLn replaced
+        evalResult <- eval replaced 0 [(0, 0)]
+        putStrLn evalResult
         
         exitSuccess
