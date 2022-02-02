@@ -6,10 +6,13 @@ import Control.Monad
 import Data.IORef
 import Data.Maybe
 
+import ASCIIConverter
+
 eval :: String -> Int -> [(Int, Int)] -> IO String
 eval sourceCode memoryPointer memoryEntries = do
   memoryRef <- newIORef $ M.fromList memoryEntries
   pointerRef <- newIORef memoryPointer
+  outputRef <- newIORef ""
 
   forM_ sourceCode $ \char -> do
     case char of
@@ -48,7 +51,18 @@ eval sourceCode memoryPointer memoryEntries = do
           modifyIORef pointerRef (\x -> x - 1)
         else
           pure ()
+      '.' -> do
+        currentMemory <- readIORef memoryRef
+        currentPointer <- readIORef pointerRef
+        
+        if isNothing (currentMemory M.!? currentPointer) then
+          modifyIORef outputRef (\x -> x ++ ['\0'])
+        else do
+          let currentValue = currentMemory M.! currentPointer
+          let converted = convertIntToASCII currentValue
+          
+          modifyIORef outputRef (\x -> x ++ [converted])
       _ ->
         pure ()
 
-  return ""
+  readIORef outputRef
