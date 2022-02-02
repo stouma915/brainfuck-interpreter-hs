@@ -8,6 +8,7 @@ import Control.Exception (try)
 import GHC.IO.Exception (ioe_description)
 
 import Interpreter (eval)
+import BrainfuckException (BrainfuckError)
 
 main :: IO ()
 main = do
@@ -34,7 +35,14 @@ main = do
       Right content -> do
         let replaced = map(\c -> if c == '\n' then ' '; else c) content
 
-        evalResult <- eval replaced 0 [(0, 0)]
-        putStrLn $ fst evalResult
+        resultOrErr <- try (eval replaced 0 [(0, 0)]) :: IO (Either BrainfuckError (String, (Int, [(Int, Int)])))
+        case resultOrErr of
+          Left err -> do
+            putStrLn "Evaluate Failed."
+            print err
 
-        exitSuccess
+            exitWith (ExitFailure 1)
+          Right result -> do
+            putStrLn $ fst result
+
+            exitSuccess
