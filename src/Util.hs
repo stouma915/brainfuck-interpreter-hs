@@ -1,4 +1,4 @@
-module Util(searchLoopEnd) where
+module Util(searchLoopEnd, while) where
 
 import Control.Monad
 import Data.IORef
@@ -14,7 +14,7 @@ searchLoopEnd before after = do
 
   forM_ after $ \char -> do
     result <- readIORef resultRef
-    
+
     if result == -1 then do
       case char of
         '[' ->
@@ -37,7 +37,7 @@ searchLoopEnd before after = do
         pure ()
     else
       pure ()
-        
+
     modifyIORef indexRef (+ 1)
 
   result <- readIORef resultRef
@@ -46,3 +46,12 @@ searchLoopEnd before after = do
     pure Nothing
   else
     pure $ Just result
+    
+while :: IO Bool -> (() -> IO ()) -> IO ()
+while condition content = do
+  cond <- condition
+  if cond then do
+    content ()
+    while condition content
+  else
+    pure ()

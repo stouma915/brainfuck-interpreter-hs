@@ -33,8 +33,8 @@ main = do
         exitWith (ExitFailure 2)
       Right content -> do
         let replaced = map(\c -> if c == '\n' then ' '; else c) content
-        
+
         evalResult <- eval replaced 0 [(0, 0)]
-        putStrLn evalResult
+        putStrLn $ fst evalResult
         
         exitSuccess

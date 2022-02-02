@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       ASCIIConverter
+      BrainfuckException
       Interpreter
       Util
   other-modules:
@@ -36,6 +37,7 @@ library
       base >=4.7 && <5
     , containers >=0.6.5.1
     , mtl >=2.2.2
+    , text >=1.2.4.1
   default-language: Haskell2010
 
 executable BrainfuckInterpreter-exe
@@ -50,6 +52,7 @@ executable BrainfuckInterpreter-exe
     , base >=4.7 && <5
     , containers >=0.6.5.1
     , mtl >=2.2.2
+    , text >=1.2.4.1
   default-language: Haskell2010
 
 test-suite BrainfuckInterpreter-test
@@ -67,4 +70,5 @@ test-suite BrainfuckInterpreter-test
     , containers >=0.6.5.1
     , hspec
     , mtl >=2.2.2
+    , text >=1.2.4.1
   default-language: Haskell2010
