@@ -1,11 +1,12 @@
 module BrainfuckException(BrainfuckError, BrainfuckException, brainfuckError) where
-  
+
 import Control.Exception
 import Data.Data (Typeable)
-  
+
 type BrainfuckError = BrainfuckException
 
-newtype BrainfuckException = BrainfuckError {description :: String} deriving (Show, Typeable)
+newtype BrainfuckException = BrainfuckError{description :: String}
+                               deriving (Show, Typeable)
 
 instance Exception BrainfuckException
 

@@ -96,23 +96,23 @@ eval sourceCode memoryPointer memoryEntries = do
               while (lazyCompareNot currentValueRef 0) (\_ -> do
                 mem <- readIORef memoryRef
                 point <- readIORef pointerRef
-                                                                         
+
                 evalResult <- eval loopCode point (M.toList mem)
                 let newMemory = snd (snd evalResult)
                 let newPointer = fst (snd evalResult)
                 let output = fst evalResult
-                                                                         
+
                 writeIORef memoryRef (M.fromList newMemory)
                 writeIORef pointerRef newPointer
                 modifyIORef outputRef (++ output)
-                
+
                 writeIORef currentValueRef $ do
                   if isNothing (M.fromList newMemory M.!? newPointer) then
                     0
                   else do
                     let value = M.fromList newMemory M.! newPointer
                     value
-                
+
                 pure ()
                 )
 
@@ -141,16 +141,16 @@ eval sourceCode memoryPointer memoryEntries = do
   output <- readIORef outputRef
 
   return (output, (pointer, M.toList memory))
-  
+
 lazyCompare :: (Eq a) => IORef a -> a -> IO Bool
 lazyCompare ref target = do
   content <- readIORef ref
   return (content == target)
-  
+
 lazyCompareNot :: (Eq a) => IORef a -> a -> IO Bool
 lazyCompareNot ref target = do
   c <- lazyCompare ref target
- 
+
   if c then
     pure False
   else

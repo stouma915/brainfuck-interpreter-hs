@@ -46,7 +46,7 @@ searchLoopEnd before after = do
     pure Nothing
   else
     pure $ Just result
-    
+
 while :: IO Bool -> (() -> IO ()) -> IO ()
 while condition content = do
   cond <- condition

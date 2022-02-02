@@ -36,5 +36,5 @@ main = do
 
         evalResult <- eval replaced 0 [(0, 0)]
         putStrLn $ fst evalResult
-        
+
         exitSuccess
