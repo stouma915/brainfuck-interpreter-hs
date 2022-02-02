@@ -2,9 +2,12 @@ module Interpreter(eval) where
 
 import qualified Data.Map.Strict as M
 
+import System.IO
+
 import Control.Monad
 import Data.IORef
 import Data.Maybe
+import Text.Read
 
 import ASCIIConverter
 import BrainfuckException
@@ -71,6 +74,60 @@ eval sourceCode memoryPointer memoryEntries = do
             let converted = convertIntToASCII currentValue
 
             modifyIORef outputRef (\x -> x ++ [converted])
+        ',' -> do
+          doneRef <- newIORef False
+          inputRef <- newIORef (0 :: Int)
+
+          while (lazyCompare doneRef False) (\_ -> do
+            putStr "Input was requested: "
+            hFlush stdout
+
+            line <- getLine
+
+            let maybeInput = readMaybe line :: Maybe Int
+            case maybeInput of
+              Just i -> do
+                if i >= -128 && i <= 127 then do
+                  writeIORef inputRef i
+                  writeIORef doneRef True
+                else
+                  putStrLn "Please enter a 1 byte number."
+              Nothing -> do
+                putStrLn "Please enter a 1 byte number."
+            )
+
+          input <- readIORef inputRef
+          
+          currentMemory <- readIORef memoryRef
+          currentPointer <- readIORef pointerRef
+          if isNothing (currentMemory M.!? currentPointer) then
+            modifyIORef memoryRef (M.insert currentPointer 0)
+          else
+            modifyIORef memoryRef (M.update (\_ -> Just 0) currentPointer)
+
+          forM_ [1..abs input] $ \_ -> do
+            mem <- readIORef memoryRef
+            pointer <- readIORef pointerRef
+            if input < 0 then
+              if isNothing (mem M.!? pointer) then
+                modifyIORef memoryRef (M.insert pointer 255)
+              else do
+                let currentValue = mem M.! pointer
+
+                if currentValue <= 0 then
+                  modifyIORef memoryRef (M.update (\_ -> Just 255) pointer)
+                else
+                  modifyIORef memoryRef (M.update (\x -> Just(x - 1)) pointer)
+            else
+              if isNothing (mem M.!? pointer) then
+                modifyIORef memoryRef (M.insert pointer 1)
+              else do
+                let currentValue = mem M.! pointer
+
+                if currentValue >= 255 then
+                  modifyIORef memoryRef (M.update (\_ -> Just 0) pointer)
+                else
+                  modifyIORef memoryRef (M.update (\x -> Just(x + 1)) pointer)
         '[' -> do
           currentMemory <- readIORef memoryRef
           currentPointer <- readIORef pointerRef

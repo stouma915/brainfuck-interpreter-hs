@@ -31,7 +31,7 @@ main = do
           putStrLn $ "    " ++ progName ++  " [FLAGS] [SOURCE]"
           putStrLn ""
           putStrLn "For more information try --help"
-          
+
           exitWith (ExitFailure 2)
     else do
       contentOrErr <- try (readFile sourceFileName) :: IO (Either IOError String)
