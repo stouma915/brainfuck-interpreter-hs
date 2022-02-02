@@ -9,7 +9,7 @@ eval sourceCode memoryPointer memoryEntries = do
 
   forM_ sourceCode $ \char -> do
     case char of
-      '>' -> do
+      '>' ->
         modifyIORef pointerRef (+ 1)
       '<' -> do
         currentPointer <- readIORef pointerRef
@@ -18,7 +18,7 @@ eval sourceCode memoryPointer memoryEntries = do
           modifyIORef pointerRef (\x -> x - 1)
         else
           pure ()
-      _ -> do 
+      _ ->
         pure ()
 
   return ""
