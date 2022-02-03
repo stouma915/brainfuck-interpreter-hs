@@ -13,7 +13,6 @@ import BrainfuckException (BrainfuckError)
 main :: IO ()
 main = do
   args <- getArgs
-  progName <- getProgName
 
   if length args /= 1 then do
     showHelp
@@ -27,8 +26,7 @@ main = do
         _ -> do
           putStrLn $ "Found argument '" ++ sourceFileName ++ "' which wasn't expected, or isn't valid in this context."
           putStrLn ""
-          putStrLn "Usage:"
-          putStrLn $ "    " ++ progName ++  " [FLAGS] [SOURCE]"
+          showUsage
           putStrLn ""
           putStrLn "For more information try --help"
 
@@ -57,15 +55,19 @@ main = do
 
 showHelp :: IO ()
 showHelp = do
-  progName <- getProgName
-
   putStrLn "Brainf**k Interpreter 1.0.0"
   putStrLn ""
-  putStrLn "Usage:"
-  putStrLn $ "    " ++ progName ++  " [FLAGS] [SOURCE]"
+  showUsage
   putStrLn ""
   putStrLn "Flags:"
   putStrLn "    -h, --help    Prints help information."
   putStrLn ""
   putStrLn "Args:"
   putStrLn "<SOURCE> Brainfuck source file."
+  
+showUsage :: IO ()
+showUsage = do
+  progName <- getProgName
+  
+  putStrLn "Usage:"
+  putStrLn $ "    " ++ progName ++  " [FLAGS] [SOURCE]"
