@@ -37,7 +37,7 @@ main = do
         Left err -> do
           putStrLn $ "Unable to read source file: " ++ ioe_description err
 
-          exitWith (ExitFailure 2)
+          exitWith (ExitFailure 1)
         Right content -> do
           let replaced = map(\c -> if c == '\n' then ' '; else c) content
 
