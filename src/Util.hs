@@ -30,7 +30,7 @@ searchLoopEnd before after = do
       if countOfBracket == countOfClosingBracket then do
         index <- readIORef indexRef
 
-        let loopEndIndex = length before + index
+        let loopEndIndex = length before + (index + 1)
 
         writeIORef resultRef loopEndIndex
       else

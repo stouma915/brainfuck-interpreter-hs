@@ -139,8 +139,8 @@ eval sourceCode memoryPointer memoryEntries = do
           maybeLoopEndIndex <- searchLoopEnd codeBeforeBracket codeAfterBracket
           case maybeLoopEndIndex of
             Just loopEndIndex -> do
-              let loopCode = take (loopEndIndex - index) (drop (index + 1) sourceCode)
-              let afterLoop = drop (loopEndIndex + 1) sourceCode
+              let loopCode = take (loopEndIndex - 1 - index) (drop (index + 1) sourceCode)
+              let afterLoop = drop loopEndIndex sourceCode
 
               currentValueRef <- newIORef (0 :: Int)
               writeIORef currentValueRef $ do
